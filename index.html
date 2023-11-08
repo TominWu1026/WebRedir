@@ -1,21 +1,110 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-<head>
-</head>
-<body>
-<script>
-	var url = new URL(location.href);
-	var ch = url.searchParams.get('ch');
-	switch(ch){
-		case "a8":
-			window.location.href = "https://reco.tga6t.com";
-			break;
-		case "az":
-			window.location.href = "https://fuy7.tga6t.com";
-			break;
-		case "ml":default:
-			window.location.href = "https://ano1.tga6t.com";
-	}
-</script>
-</body>
+	<head>
+		<title>Stellar by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						
+						<h1>鴨鴨找IP</h1>
+						<p>IP查找工具</p>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="#ip" class="active">IP资料</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Introduction -->
+							<section id="ip" class="main">
+								<div class="spotlight">
+									<div class="content">
+										<header class="major">
+											<h2>IP资料</h2>
+										</header>
+										<div class="row gtr-uniform">
+											<div class="col-6 col-12-xsmall">
+												<input type="text" name="ip" id="input-ip" aria-label="找IP" placeholder="输入IPv4或IPv6" value="114.114.114.114">
+											</div>
+											<div class="col-6 col-12-xsmall">
+												<input id="search" type="submit" value="搜索" class="primary" onclick="search_ip()"/>
+											</div>
+										</div>
+										<hr/>
+										<div class="table-wrapper">
+											<table>
+												<thead>
+													<tr>
+														<th>Key</th>
+														<th>Value</th>
+													</tr>
+												</thead>
+												<tbody id="data_content">
+													
+												</tbody>
+											</table>
+										
+										</div>
+										
+									</div>
+								</div>
+								
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<p>聽說這裡要放ICP</p>
+						</section>
+					</footer>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script>
+				function search_ip() {
+					var xmlhttp = new XMLHttpRequest();
+					xmlhttp.onreadystatechange = function() {
+						if (this.readyState == 4 && this.status == 200) {
+							var data = JSON.parse(this.responseText);
+							//myFunction(myArr);
+							//alert(this.responseText);
+							var rows = "";
+							rows += "<tr><td>"+"IP"+"</td><td>"+data.ip+"</td></tr>";
+							rows += "<tr><td>"+"国家/地区"+"</td><td>"+data.country+"</td></tr>";
+							rows += "<tr><td>"+"国码"+"</td><td>"+data.country_code+"</td></tr>";
+							rows += "<tr><td>"+"区域"+"</td><td>"+data.region+"</td></tr>";
+							rows += "<tr><td>"+"ASN"+"</td><td>"+data.connection.asn+"</td></tr>";
+							rows += "<tr><td>"+"组织"+"</td><td>"+data.connection.org+"</td></tr>";
+							document.getElementById("data_content").innerHTML = rows;
+						}
+					};
+					xmlhttp.open("GET", "https://ipwho.is/"+document.getElementById("input-ip").value, true);
+					xmlhttp.setRequestHeader("Content-type", "application/json");
+					xmlhttp.send();
+				}
+			</script>
+	</body>
 </html>
