@@ -92,12 +92,16 @@
 							//myFunction(myArr);
 							//alert(this.responseText);
 							var rows = "";
-							rows += "<tr><td>"+"IP"+"</td><td>"+data.ip+"</td></tr>";
-							rows += "<tr><td>"+"国家/地区"+"</td><td>"+data.country+"</td></tr>";
-							rows += "<tr><td>"+"国码"+"</td><td>"+data.country_code+"</td></tr>";
-							rows += "<tr><td>"+"区域"+"</td><td>"+data.region+"</td></tr>";
-							rows += "<tr><td>"+"ASN"+"</td><td>"+data.connection.asn+"</td></tr>";
-							rows += "<tr><td>"+"组织"+"</td><td>"+data.connection.org+"</td></tr>";
+							if(!data.success){
+								rows+= "<tr><td>"+"Error"+"</td><td>"+data.message+"</td></tr>";
+							}else{
+								rows += "<tr><td>"+"IP"+"</td><td>"+data.ip+"</td></tr>";
+								rows += "<tr><td>"+"国家/地区"+"</td><td>"+data.country+"</td></tr>";
+								rows += "<tr><td>"+"国码"+"</td><td>"+data.country_code+"</td></tr>";
+								rows += "<tr><td>"+"区域"+"</td><td>"+data.region+"</td></tr>";
+								rows += "<tr><td>"+"ASN"+"</td><td>"+data.connection.asn+"</td></tr>";
+								rows += "<tr><td>"+"组织"+"</td><td>"+data.connection.org+"</td></tr>";
+							}
 							document.getElementById("data_content").innerHTML = rows;
 						}
 					};
