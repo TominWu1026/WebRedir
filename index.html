@@ -9,72 +9,6 @@
 	</head>
 	<body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Header -->
-					<header id="header" class="alt">
-						
-						<h1>鸭鸭找IP</h1>
-						<p>IP查找工具</p>
-					</header>
-
-				<!-- Nav -->
-					<nav id="nav">
-						<ul>
-							<li><a href="#ip" class="active">IP资料</a></li>
-						</ul>
-					</nav>
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Introduction -->
-							<section id="ip" class="main">
-								<div class="spotlight">
-									<div class="content">
-										<header class="major">
-											<h2>IP资料</h2>
-										</header>
-										<div class="row gtr-uniform">
-											<div class="col-6 col-12-xsmall">
-												<input type="text" name="ip" id="input-ip" aria-label="找IP" placeholder="输入IPv4或IPv6" value="114.114.114.114">
-											</div>
-											<div class="col-6 col-12-xsmall">
-												<input id="search" type="submit" value="搜索" class="primary" onclick="search_ip()"/>
-											</div>
-										</div>
-										<hr/>
-										<div class="table-wrapper">
-											<table>
-												<thead>
-													<tr>
-														<th>Key</th>
-														<th>Value</th>
-													</tr>
-												</thead>
-												<tbody id="data_content">
-													
-												</tbody>
-											</table>
-										
-										</div>
-										
-									</div>
-								</div>
-								
-							</section>
-
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<section>
-							<p>皖ICP备2023011750号-3</p>
-						</section>
-					</footer>
-			</div>
-
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
@@ -84,31 +18,9 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script>
-				function search_ip() {
-					var xmlhttp = new XMLHttpRequest();
-					xmlhttp.onreadystatechange = function() {
-						if (this.readyState == 4 && this.status == 200) {
-							var data = JSON.parse(this.responseText);
-							//myFunction(myArr);
-							//alert(this.responseText);
-							var rows = "";
-							if(!data.success){
-								rows+= "<tr><td>"+"Error"+"</td><td>"+data.message+"</td></tr>";
-							}else{
-								rows += "<tr><td>"+"IP"+"</td><td>"+data.ip+"</td></tr>";
-								rows += "<tr><td>"+"国家/地区"+"</td><td>"+data.country+"</td></tr>";
-								rows += "<tr><td>"+"国码"+"</td><td>"+data.country_code+"</td></tr>";
-								rows += "<tr><td>"+"区域"+"</td><td>"+data.region+"</td></tr>";
-								rows += "<tr><td>"+"ASN"+"</td><td>"+data.connection.asn+"</td></tr>";
-								rows += "<tr><td>"+"组织"+"</td><td>"+data.connection.org+"</td></tr>";
-							}
-							document.getElementById("data_content").innerHTML = rows;
-						}
-					};
-					xmlhttp.open("GET", "https://ipwho.is/"+document.getElementById("input-ip").value, true);
-					xmlhttp.setRequestHeader("Content-type", "application/json");
-					xmlhttp.send();
-				}
+				var ori = window.location.origin;
+				var hostname = window.location.hostname;
+				window.location.replace(ori+"/"+hostname+".html");
 			</script>
 	</body>
 </html>
